@@ -1,0 +1,115 @@
+# Git 시작하기
+
+## Git은 무엇인가?: 분산 버전관리 시스템
+
+### 버전관리?
+
+파일을 저장하며 갱신했을 때 이전 버전을 확인할 수 없으면 낭패
+
+- assignment_real_final.pptx를 저장하고나면 처음의 assignment 버전은 확인할 수 없다.
+
+#### **Git은 이런 문제가 없다.**
+
+- 코드의 <u>히스토리(버전)을 관리</u>하는 도구
+- 개발되어 온 과정 파악 가능
+- 이전 버전과의 비교·분석 가능
+- 각 버전의 파일 자체를 저장하는 게 아니라 변경사항만을 저장함 → 저장용량 줄어듦!
+
+### 분산?
+
+블록체인을 생각하면 됨. ↔ 중앙집중
+
+변경사항의 대이터베이스가 한 곳만 있는게 아니라 여러곳에 저장되어 있어 한 곳에 문제가 생겨도 복구가 용이
+
+이런 Git을 이용한 저장고를 제공하는 서비스가 **Github**
+
+**Git과 Github은 같지 않다!**
+
+## Git의 작동
+
+Git은 **명령어를 통해** 작동한다.
+
+**Git Bash**가 명령프롬포트 처럼 명령을 입력받을 수 있는 것
+
+But 명령프롬포트와 달리 Mac이나 Rinux의 명령어를 사용가능하며, 윈도우에서는 **PowerShell**로 대체할 수 있다.
+
+Visual Stodio Code의 **터미널**도 같은 기능
+
+#### **간단한 명령어 목록**
+
+- `ls` : 현재 위치의 폴더와 파일 목록을 보여줌
+- `cd <path>`: 현재 위치에서 해당 경로로 이동하기
+  - `cd ..` : 현재 위치보다 상위로 이동
+  - tab키를 이용해 경로명을 자동완성 할 수 있음
+- `mkdir <dirname>`: 위치에 폴더 생성
+- `touch <filename>`: 위치에 파일 생성
+- `rm <name>`: 파일 삭제. 파일 한개만 삭제 가능
+  - `rm -r <name>`: 폴더 안에 있는 파일들을 포함해 여러개를 삭제 가능
+
+- `clear`: 기존에 적혀있던 내용들을 치워줌
+
+
+
+# Git 기본기
+
+## Repository
+
+특정 디렉토리를 버전 관리하는 **저장소**
+
+- `git init` 명령어로 로컬 저장소 생성
+  - 해당 위치에 .git 폴더가 생기며 그때부터 git으로 버전 관리를 할 수 있다.
+  - .git 폴더를 삭제하면 버전관리에 필요한 모든 것이 삭제돼버림...
+
+## Commit
+
+프로젝트 생성 후 특정 버전을 남기는 것을 '**커밋(Commit)**'한다고 함
+
+커밋은 크게 세가지 영역을 바탕으로 동작한다.
+
+- **Working Directory**: 내가 작업하고 있는 실제 디렉토리
+  - 아직 Git에게 감시되고 있지 않은 파일 (unteacked)
+  - `git status` 명령어를 통해 파일들의 상태 확인 가능
+- **Staging Area**: 커밋으로 남기고 싶은, 특정 버전으로 관리하고 싶은 파일이 있는 곳
+  - `git add` 명령어를 통해 Git에게 이 파일을 관리할거라고 선언, Staging Area에 저장됨 (staged)
+  - `git add .` 명령어를 사용하면 현재 위치의 추적되지 않은 모든 파일과 수정된 파일을 모두 Staging Area로 올려줌 (.은 현제 위치라는 뜻)
+- **Repository**: 커밋들이 저장되는 곳 → .git 디렉토리 안
+  - `git commit` 명령어를 통해 파일이 Repository에 저장되고, 그 자체가 하나의 버전(커밋)이 됨 (committed)
+  - `git commit -m "commit_massage"` 명령어를 통해 커밋의 메시지를 정할 수도 있음. 최대한 자세히 적어두는 게 좋다
+
+이후 committed 된 Working Directory의 파일을 수정하면 modified 상태(수정되었으나 아직 커밋되지 않음)가 된다. 이 파일을 다시 위의 과정을 거쳐 커밋으로 만들면서 하나의 파일에 여러개의 버전(커밋)을 생성하는 것
+
+#### commit을 실행하기 전에
+
+- `git config --global user.name "user_name"` 명령어로 Github 유저네임을 등록하고
+- `git config --global user.email "user_email"` 명령어로 Github 이메일을 등록해야 한다.
+
+##### 왜 Staging Area를 거쳐 Commit을 할까?
+
+여러개의 파일들 중 일부만 버전업 되고 일부는 아직 완전히 버전업 되지 않았을 경우
+
+다른 파일들과는 달리 해당 파일은 commit으로 만들기 부족하다.
+
+- 버전업(ver2 상태) 된 파일만 Staging Area에 올리고 버전업 전인 (현재 ver 1.5 정도 버전업 됐다면 ver1 상태) 파일과 함께 commit하여 commit 1 생성.
+- 이후 남은 파일을 완전히 버전업 하고나면 해당 파일은 modified 상태지만 이미 버전업되어 커밋된 다른 파일들은 아님.
+  - 변경된 파일은 Staging Area에 올라가고, 이미 커밋된 파일들은 올라가지 않음. 그 상태로 commit하여 commit 2 생성.
+
+### Commit history 확인하기
+
+- `git log` : 지금까지 커밋한 commit history를 확인할 수 있다.
+- `git diff 주소값 주소값` : 두 commit 간의 내용을 비교할 수 있다. 앞에 적인 것에 대해 뒤에 적힌 것이 어떻게 다른지를 알려줌.
+  - 주소값은 `git log`를 통해 나오는 것에서 앞의 네자리만 입력해도 된다.
+
+# Github 시작하기
+
+## Github Repository와 연결하기
+
+##### **방법 1**
+
+- `git remote add origin {remote_repo(주소)}` : origin이라는 별명의 remote repo를 추가하겠다는 뜻
+- `git push -u origin master` : origin에 master branch를 push한다는 뜻
+
+##### **방법 2**
+
+- `git clone {remote_repo}` : remote repo를 local로 복사한다.
+- `git push` : local repo의 최신 커밋을 remote repo로 push
+- `git pull` : remote repo의 최신 커밋을 local repo로 pull
