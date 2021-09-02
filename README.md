@@ -5,6 +5,6 @@ Today I Learned
 앞으로도 많이 공부하고 싶다
 
 2021년에 공부할 것들
-    - Java
-    - Web (html, css 등)
-    - 가능하다면 Python도
+- Java
+- Web (html, css 등)
+- 가능하다면 Python도
