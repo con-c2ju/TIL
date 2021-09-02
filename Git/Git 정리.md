@@ -111,5 +111,7 @@ Visual Stodio Code의 **터미널**도 같은 기능
 ##### **방법 2**
 
 - `git clone {remote_repo}` : remote repo를 local로 복사한다.
-- `git push` : local repo의 최신 커밋을 remote repo로 push
-- `git pull` : remote repo의 최신 커밋을 local repo로 pull
+- `git push origin main` : local repo의 최신 커밋을 remote repo로 push
+- `git pull origin main` : remote repo의 최신 커밋을 local repo로 pull
+  - 방법 2로 만들어진 경우 main branch의 이름은 master가 아니라 main이 된다. (Bash에 뜨는 이름도 바뀜)
+  - 이미 remote repo와 local repo가 연결된 상태이기 때문에 push와 pull에서 뒷부분을 생략해도 된다.
