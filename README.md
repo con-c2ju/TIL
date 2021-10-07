@@ -12,11 +12,6 @@
 <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jQuery&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/></a>
 </p>
-
-<h4 align="center">✏ Study Notes 📚</h4> 
-<p align="center">
-<a href="https://www.notion.so/dolphinmassage/e08ba888caeb4fa0bcd005bfd4567671?v=a7028a536d1a40388e4f48844e833edb" target="_blank"><img src="https://img.shields.io/badge/AI활용 지능형 서비스 개발-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
-</p>
 <br>
 
 ### 👉 Java
